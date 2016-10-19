@@ -19,7 +19,7 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "http://ubi-mailer.herokuapp.com/ubi_mailer/send_default",
+                url: "https://ubi-mailer.herokuapp.com/ubi_mailer/send_default",
                 type: "POST",
                 beforeSend: function(request){
                     request.setRequestHeader('Access-Control-Allow-Origin', 'json');
