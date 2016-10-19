@@ -19,16 +19,22 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: "http://ubi-mailer.herokuapp.com/ubi_mailer/send_default",
                 type: "POST",
+                beforeSend: function(request){
+                    request.setRequestHeader('Access-Control-Allow-Origin', 'json');
+                },
                 data: {
+                  ubi_mail: {
                     name: name,
                     phone: phone,
-                    email: email,
-                    message: message
+                    email_address: email,
+                    message: message,
+                    config_token: 'c38ac97e93e89dff61d54e4c889b87b2:cc93106104cee2d8fc24c814c15f4800f1ef4d09200310ad8fc58418fc802a221eed7164c74e156b956ec50ef9fbf97008735f5c13036f66c6d11a50feaf55de3612ff8f16eee85317719ca79f9d5693'
+                  }
                 },
                 cache: false,
-                success: function() {
+                success: function(data) {
                     // Success message
                     $('#success').html("<div class='alert alert-success'>");
                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -41,7 +47,7 @@ $(function() {
                     //clear all fields
                     $('#contactForm').trigger("reset");
                 },
-                error: function() {
+                error: function(data) {
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
