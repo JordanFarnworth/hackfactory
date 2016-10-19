@@ -22,7 +22,7 @@ $(function() {
                 url: "https://ubi-mailer.herokuapp.com/ubi_mailer/send_default",
                 type: "POST",
                 beforeSend: function(request){
-                    request.setRequestHeader('Access-Control-Allow-Origin', 'json');
+                    request.setRequestHeader('Access-Control-Allow-Origin', 'https://jordanfarnworth.github.io');
                 },
                 data: {
                   ubi_mail: {
